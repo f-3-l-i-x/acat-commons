@@ -18,7 +18,7 @@ class IsValidMail implements Validator {
      */
     public function validate(mixed $value): ValidationResult {
         if (!empty($value) && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
-            return ValidationResult::invalid($value . " . isn't a valid mail");
+            return ValidationResult::invalid(ValueDescription::of($value) . " isn't a valid mail");
         }
         return ValidationResult::valid();
     }

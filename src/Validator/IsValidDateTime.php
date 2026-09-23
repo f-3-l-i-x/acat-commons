@@ -30,8 +30,8 @@ final class IsValidDateTime implements Validator {
      * @return ValidationResult
      */
     public function validate(mixed $value) : ValidationResult {
-        if (empty($value) || empty($this->format)|| !DateTime::createFromFormat($this->format, $value)) {
-            return ValidationResult::invalid($value . " . isn't a valid date");
+        if (empty($value) || empty($this->format) || !is_string($value) || !DateTime::createFromFormat($this->format, $value)) {
+            return ValidationResult::invalid(ValueDescription::of($value) . " isn't a valid date");
         }
         return ValidationResult::valid();
     }

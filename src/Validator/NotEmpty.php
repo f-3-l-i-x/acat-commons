@@ -18,7 +18,7 @@ final class NotEmpty implements Validator {
      */
     public function validate(mixed $value): ValidationResult {
         if (empty($value)) {
-            return ValidationResult::invalid($value . " . is empty");
+            return ValidationResult::invalid(ValueDescription::of($value) . " is empty");
         }
         return ValidationResult::valid();
     }

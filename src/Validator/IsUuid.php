@@ -18,8 +18,8 @@ final class IsUuid implements Validator {
      * @return ValidationResult
      */
     public function validate(mixed $value): ValidationResult {
-        if (!empty($value) && !Uuid::isValid($value)) {
-            return ValidationResult::invalid($value . " . isn't a valid uuid");
+        if (!empty($value) && (!is_string($value) || !Uuid::isValid($value))) {
+            return ValidationResult::invalid(ValueDescription::of($value) . " isn't a valid uuid");
         }
         return ValidationResult::valid();
     }
